@@ -1,32 +1,77 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+void movimentoTorre(int torre){
+    if(torre > 0){
+        printf("Direita\n"); //Simulando o movimento da peça.
+        torre--;
+        movimentoTorre(torre); //A função chama a si propria passando o valor de torre decrementado.
+    }
+}
 
-int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+void movimentoBispo(int bispo){
+    if(bispo > 0){
+        printf("Cima, Direita\n"); //Simulando o movimento da peça.
+        bispo--;
+        movimentoBispo(bispo); //A função chama a si propria passando o valor de bispo decrementado.
+    }
+}
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+void movimentoRainha(int rainha){
+    if(rainha > 0){
+        printf("Esquerda\n"); //Simulando o movimento da peça.
+        rainha--;
+        movimentoRainha(rainha); //A função chama a si propria passando o valor de rainha decrementado.
+    }
+}
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+int main(){
+    int torre = 5, bispo = 5, rainha = 8; //Inicializando as variáveis de controle.
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    printf("Simulação do movimento de quatro peças de Xadrez: Torre, Bispo, Rainha e Cavalo\n");
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    printf("\nA Torre se moverá cinco casas para a direita...\n");
+    movimentoTorre(torre); //Chamada da função recursiva.
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    /*for(torre; torre < 5; torre++){ //Definindo o tamanho do loop e depois incrementa a variável de controle.
+        printf("Direita\n"); //Simulando o movimento da peça.
+    }*/
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    printf("\nO Bispo se moverá cinco casas na diagonal para cima e à direita...\n");
+    movimentoBispo(bispo); //Chamada da função recursiva
+
+    /*while(bispo < 5){ //Definindo o tamanho do loop.
+        printf("Cima, Direita\n"); //Simulando o movimento da peça.
+        bispo++; //Incrementando a variável de controle.
+    }*/
+
+    printf("\nA Rainha se moverá oito casas para a esquerda...\n");
+    movimentoRainha(rainha); //Chamada da função recursiva.
+    /*do{
+        printf("Esquerda\n"); //Simulando o movimento da peça.
+        rainha++; //Incrementando a variável de controle.
+    }while(rainha < 8); //Definindo o tamanho do loop*/
+
+    printf("\nO Cavalo se moverá duas casas para cima e uma casa para a direita...\n");
+
+    for(int y = 0; y < 3; y++){ //Utilizando  a variável Y para controlar o loop externo.
+        if(y < 2)
+            printf("Cima\n"); //Simulando o movimento da peça.
+        for(int x = 0; x <= y; x++){ //Utilizando a variável X para controlar o loop interno.
+            if(y == 2)
+                printf("Direita\n"); //Simulando o movimento da peça.
+                break;
+        }
+    }
+
+    printf("\nO Bispo se moverá cinco casas na diagonal para cima e à direita (Loops Aninhados)...\n");
+
+    for(int y = 0; y < 5; y++){ //Utilizando  a variável Y para controlar o loop externo.
+        printf("Cima, "); //Simulando o movimento da peça.
+        for(int x = 0; x < 5; x++){ //Utilizando a variável X para controlar o loop interno.
+            if(x == y)
+                printf("Direita\n"); //Simulando o movimento da peça.
+        }
+    }
 
     return 0;
 }
